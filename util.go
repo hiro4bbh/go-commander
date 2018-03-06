@@ -193,10 +193,10 @@ func DownloadAndDecompressFile(dirpath FilePath, rawurl string, cache bool, logg
 
 // Env returns the environment variable with the given name.
 func Env(name string) BoxString {
-	if val := os.Getenv(name); val == "" {
-		return NewBoxString(nil)
+	if val := os.Getenv(name); val != "" {
+		return NewBoxString(val)
 	}
-	return NewBoxString(val)
+	return NewBoxString(nil)
 }
 
 // HomeDir returns the user's home directory path.
