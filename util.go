@@ -58,7 +58,7 @@ func (box BoxString) UnwrapFilePath() (FilePath, error) {
 	return FilePath(""), fmt.Errorf("tried to unwrap %s", box)
 }
 
-// UnwrapOr returns the FilePath string if ok, otherwise returns defval.
+// UnwrapFilePathOr returns the FilePath string if ok, otherwise returns defval.
 func (box BoxString) UnwrapFilePathOr(defval FilePath) FilePath {
 	if box.ok {
 		return FilePath(box.str)
@@ -138,7 +138,7 @@ func DownloadFile(dirpath FilePath, rawurl string, cache bool, logger *golog.Log
 // DecompressFile returns a decompressed file.
 // This function automatically closes the given file if returning the decompressed file.
 // If the file does not exist or cache is false, then this function decompress the file.
-// Currently, this function supports gzip (extention ".gz").
+// Currently, this function supports gzip (extension ".gz").
 //
 // This function returns an error in decompression.
 func DecompressFile(file *os.File, cache bool, logger *golog.Logger) (*os.File, error) {
@@ -195,9 +195,8 @@ func DownloadAndDecompressFile(dirpath FilePath, rawurl string, cache bool, logg
 func Env(name string) BoxString {
 	if val := os.Getenv(name); val == "" {
 		return NewBoxString(nil)
-	} else {
-		return NewBoxString(val)
 	}
+	return NewBoxString(val)
 }
 
 // HomeDir returns the user's home directory path.

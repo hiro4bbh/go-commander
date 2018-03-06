@@ -103,7 +103,7 @@ func (commander *Commander) Help() {
 	fmt.Fprintf(w, "%s\n%s\n\ncommands:\n", commander.Name(), commander.Copyright())
 	names := make([]string, 0, len(commander.ctxs)+1)
 	names = append(names, "@help")
-	for name, _ := range commander.ctxs {
+	for name := range commander.ctxs {
 		names = append(names, name)
 	}
 	sort.Strings(names[1:])

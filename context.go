@@ -63,7 +63,7 @@ func (ctx *Context) Help(cmdname string) {
 	fmt.Fprintf(w, "%s\n%s\n\n@%s: %s\noptions:\n", ctx.commander.Name(), ctx.commander.Copyright(), cmdname, ctx.cmd.Description())
 	names := make([]string, 0, len(ctx.opts)+1)
 	names = append(names, "help")
-	for name, _ := range ctx.opts {
+	for name := range ctx.opts {
 		names = append(names, name)
 	}
 	sort.Strings(names[1:])
@@ -90,7 +90,7 @@ func (ctx *Context) Logger() *golog.Logger {
 // OptionsString returns the string representation of options.
 func (ctx *Context) OptionsString() string {
 	names := make([]string, 0, len(ctx.opts))
-	for name, _ := range ctx.opts {
+	for name := range ctx.opts {
 		names = append(names, name)
 	}
 	sort.Strings(names)
